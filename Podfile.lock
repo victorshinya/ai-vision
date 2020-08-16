@@ -1,0 +1,20 @@
+PODS:
+  - IBMSwiftSDKCore (1.0.0)
+  - IBMWatsonVisualRecognitionV3 (3.5.1):
+    - IBMSwiftSDKCore (~> 1.0.0)
+
+DEPENDENCIES:
+  - IBMWatsonVisualRecognitionV3 (~> 3.5.1)
+
+SPEC REPOS:
+  trunk:
+    - IBMSwiftSDKCore
+    - IBMWatsonVisualRecognitionV3
+
+SPEC CHECKSUMS:
+  IBMSwiftSDKCore: 54ad77b03a4d27b218ba514580197db3b89a96ca
+  IBMWatsonVisualRecognitionV3: ea3515ac398f2c3839762e7a3b5f3b56b1c45101
+
+PODFILE CHECKSUM: fbf6ea3e4f7a6d4b0b2cf118e2720e1ce37bf7b4
+
+COCOAPODS: 1.9.3
