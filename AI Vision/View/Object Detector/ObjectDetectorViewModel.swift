@@ -28,8 +28,8 @@ class ObjectDetectorViewModel {
     
     func classify(image: UIImage, completion: @escaping (String) -> Void) {
         resultModel.removeAll()
-        watsonService.visualRecognition.classify(image: image, classifierIDs: ["BugDetector_1819574982"]) { response, error in
-            guard let classifiedImages = response?.result else {
+        watsonService.visualRecognition.classifyWithLocalModel(image: image, classifierIDs: Constants.WATSON_VISUALRECOGNITIONV3_MODELS) { response, error in
+            guard let classifiedImages = response else {
                 return
             }
             
@@ -42,6 +42,19 @@ class ObjectDetectorViewModel {
                 result.append("\(model.className): \(Int(model.score * 100))%\n")
             }
             completion(result)
+        }
+    }
+    
+    func updateLocalModel() {
+        let localModels = try? watsonService.visualRecognition.listLocalModels()
+        for model in Constants.WATSON_VISUALRECOGNITIONV3_MODELS {
+            if !(localModels?.contains(model))! {
+                watsonService.visualRecognition.updateLocalModel(classifierID: model) { _, error in
+                    if let description = error?.errorDescription {
+                        print(description)
+                    }
+                }
+            }
         }
     }
 }
